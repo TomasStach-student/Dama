@@ -9,6 +9,7 @@
 # chessboard[2][2]=1
 # print(chessboard) ---TAKTO TO NIKDY NEROBIT
 
+from PIL import Image, ImageDraw
 
 chessboard=[]
 counter=0
@@ -37,6 +38,57 @@ def checkit(x,y):
                     return False
     return True
 
+
+def nakresli_sachovnicu():
+    velkost_policka = 60
+    velkost_sachovnice = 8 * velkost_policka
+
+    img = Image.new("RGB", (velkost_sachovnice, velkost_sachovnice))
+    kreslenie = ImageDraw.Draw(img)
+
+    for riadok in range(8):
+        for stlpec in range(8):
+            x1 = stlpec * velkost_policka
+            y1 = riadok * velkost_policka
+            x2 = x1 + velkost_policka
+            y2 = y1 + velkost_policka
+
+            if (riadok + stlpec) % 2 == 0:
+                farba = (255, 255, 255)  #biela
+            else:
+                farba = (0, 0, 0)  #cierna
+
+            kreslenie.rectangle([x1, y1, x2, y2], fill=farba)
+
+    return img
+
+
+def vytvor_obrazok(kombinacia_cislo):
+
+    img = nakresli_sachovnicu()
+    kreslenie = ImageDraw.Draw(img)
+
+    velkost_policka = 60
+
+    for riadok in range(8):
+        for stlpec in range(8):
+            if chessboard[riadok][stlpec] == 1:
+                x1 = stlpec * velkost_policka
+                y1 = riadok * velkost_policka
+
+                okraj = 8
+
+                kruh_x1 = x1 + okraj
+                kruh_y1 = y1 + okraj
+                kruh_x2 = x1 + velkost_policka - okraj
+                kruh_y2 = y1 + velkost_policka - okraj
+
+                kreslenie.ellipse([kruh_x1, kruh_y1, kruh_x2, kruh_y2], fill="red", outline="darkred", width=2)
+
+    nazov_suboru =f"dama{kombinacia_cislo}.png"
+    img.save(nazov_suboru)
+
+
 def queens(n):
     global chessboard
     global counter
@@ -45,6 +97,8 @@ def queens(n):
         print(chessboard)
         print("----------------------------------")
         print(counter)
+
+        vytvor_obrazok(counter)
     else:
         for i in range(8):
             if checkit(i,n):
