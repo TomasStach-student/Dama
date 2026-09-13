@@ -52,7 +52,7 @@ def nakresli_sachovnicu():
     return img
 
 
-def vytvor_obrazok(kombinacia_cislo):
+def vytvor_obrazok(counter):
 
     img = nakresli_sachovnicu()
 
@@ -70,7 +70,7 @@ def vytvor_obrazok(kombinacia_cislo):
 
                 img.paste(korunka_img, (x1, y1), korunka_img)
 
-    nazov_suboru =f"dama{kombinacia_cislo}.png"
+    nazov_suboru =f"dama{counter}.png"
     img.save(nazov_suboru)
 
 
