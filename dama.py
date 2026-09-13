@@ -56,7 +56,7 @@ def nakresli_sachovnicu():
             if (riadok + stlpec) % 2 == 0:
                 farba = (255, 255, 255)  #biela
             else:
-                farba = (0, 0, 0)  #cierna
+                farba = (67, 67, 67)  #cierna
 
             kreslenie.rectangle([x1, y1, x2, y2], fill=farba)
 
