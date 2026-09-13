@@ -55,7 +55,6 @@ def nakresli_sachovnicu():
 def vytvor_obrazok(kombinacia_cislo):
 
     img = nakresli_sachovnicu()
-    kreslenie = ImageDraw.Draw(img)
 
     korunka_img = Image.open("korunka.png").convert("RGBA")
     korunka_img = korunka_img.resize((60, 60))
