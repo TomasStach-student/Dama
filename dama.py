@@ -86,7 +86,7 @@ def vytvor_obrazok(kombinacia_cislo):
                 kreslenie.ellipse([kruh_x1, kruh_y1, kruh_x2, kruh_y2], fill="red", outline="darkred", width=2)
 
     nazov_suboru =f"dama{kombinacia_cislo}.png"
-    img.save(nazov_suboru)
+    img.save(f"Obrazky/{nazov_suboru}")
 
 
 def queens(n):
